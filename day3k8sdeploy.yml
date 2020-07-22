@@ -1,0 +1,53 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  creationTimestamp: null
+  name: ashu-space   # namespace  is getting  created
+spec: {}
+status: {}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: ashuday3webapp
+  name: ashuday3webapp
+  namespace: ashu-space   # namespace is getting  used
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ashuday3webapp
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: ashuday3webapp  # real lable of pod
+    spec:
+      containers:
+      - image: dockerashu/microsoftapp:v003
+        name: microsoftapp
+        resources: {}
+status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: ashuday3s1
+  name: ashuday3s1
+  namespace: ashu-space  # using namespace 
+spec:
+  ports:
+  - name: 1234-80
+    port: 1234
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: ashuday3webapp  #  matching  label of  pods
+  type: NodePort
+status:
+  loadBalancer: {}

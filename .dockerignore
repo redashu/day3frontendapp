@@ -3,3 +3,4 @@ Dockerfile
 .dockerignore
 *.md
 LICENSE
+day3k8sdeploy.yml
