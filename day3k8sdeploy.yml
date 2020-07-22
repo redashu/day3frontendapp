@@ -29,6 +29,7 @@ spec:
       containers:
       - image: dockerashu/microsoftapp:v003
         name: microsoftapp
+        imagePullPolicy: Always
         resources: {}
 status: {}
 ---
